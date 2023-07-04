@@ -1,0 +1,24 @@
+.dashboard__transaction {
+    margin: 12px 0;
+    padding: 20px;
+    border: 1px solid tomato;
+    border-radius: 12px;;    
+}
+
+.dashboard__transaction ul {
+    list-style: none;
+    padding: 0px 8px;
+}
+
+.dashboard__transaction ul li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0px;
+    gap: 20px;
+    border-bottom: 1px solid;
+}
+
+.dashboard__transaction ul li strong {
+    display: flex;
+    gap: 4px;
+}
