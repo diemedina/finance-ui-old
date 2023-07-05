@@ -1,35 +1,76 @@
 import React, { useState } from 'react';
 import MockTransaction from '../../mocks/transactions';
+import Modal from '../../components/Modal/Modal.jsx';
 import moment from 'moment';
 import "./dashboard.css";
 
 export default function Dashboard() {
-  const [transactions] = useState(MockTransaction);
-  console.log(transactions);
+  const [transactions, setTransaction] = useState(MockTransaction);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function addTransaction(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+    
+    const _transaction = [...transactions];
+    _transaction.unshift({...formJson, date: new Date()});
+    setIsOpen(false);
+    setTransaction(_transaction);
+  }
+
   return (
     <div className='dashboard'>
       <h1>Hello, Diego</h1>
 
       <section className='dashboard__transaction'>
-        <h2>Recent Transactions</h2>
-        <ul>
+        <div className='dashboard__transaction__header'>
+          <h2>Recent Transactions</h2>
+          <button onClick={() => {setIsOpen(true)}}>
+            <i className="material-symbols-outlined">add</i>
+            Add
+          </button>
+        </div>
+        <ul className='dashboard__transaction__list'>
           { 
             transactions.map(transaction => {
               return (
-                <li key={transaction.id}>
-                  <strong>
-                    <i className="material-symbols-outlined">{transaction.type}</i>
-                    {transaction.description}
-                  </strong>
-                  <span>{moment(transaction.date).format('LLLL')}</span>
-                  <strong>$ {transaction.total}</strong>
-                  <i className="material-symbols-outlined">more_vert</i>
+                <li key={transaction.id} className='dashboard__transaction__list__item'>
+                  <i className="material-symbols-outlined">{transaction.type}</i>
+                  <div className='dashboard__transaction__list__item__detail'>
+                    <strong>{transaction.description}</strong>
+                    <small>Shop</small>
+                  </div>
+                  <div className='dashboard__transaction__list__item__price'>
+                    <strong>$ {transaction.total}</strong>
+                    <small>{moment(transaction.date).format('HH:mm')}</small>
+                  </div>
                 </li>
               )
             }) 
           }
         </ul>
       </section>
+
+      { isOpen && 
+        <Modal title='Add transaction' setIsOpen={setIsOpen}>
+          <form className='modal__transaction__add' onSubmit={addTransaction}>
+            <label htmlFor="type">Type</label>
+            <select name="type" id="type">
+              <option value="shopping_cart">Shopping</option>
+            </select>
+
+            <label htmlFor="description">Description</label>
+            <input type="text" name="description" id="description" placeholder='Description' />
+
+            <label htmlFor="total">Total</label>
+            <input type="number" name="total" id="total" placeholder='$' />
+
+            <input type="submit" value="Add" />
+          </form>
+        </Modal>
+      }
     </div>
   )
 }

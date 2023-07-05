@@ -1,24 +1,78 @@
 .dashboard__transaction {
+    width: 600px;
     margin: 12px 0;
-    padding: 20px;
-    border: 1px solid tomato;
-    border-radius: 12px;;    
+    padding: 36px;
+    border: 1px solid none;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px 0px #ff2cdf inset;
 }
 
-.dashboard__transaction ul {
-    list-style: none;
-    padding: 0px 8px;
+.dashboard__transaction__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
 }
 
-.dashboard__transaction ul li {
+.dashboard__transaction__header button {
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 12px;
+    background: none;
     display: flex;
     align-items: center;
-    padding: 12px 0px;
-    gap: 20px;
-    border-bottom: 1px solid;
 }
 
-.dashboard__transaction ul li strong {
+.dashboard__transaction__list {
+    list-style: none;
+    padding: 24px 12px 0px 12px;
     display: flex;
-    gap: 4px;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dashboard__transaction__list__item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard__transaction__list__item i {
+    background-color: #52586d;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.dashboard__transaction__list__item small {
+    font-weight: lighter;
+    opacity: .6;
+}
+
+.dashboard__transaction__list__item__price, .dashboard__transaction__list__item__detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__transaction__list__item__price {
+    margin-left: auto;
+    align-items: flex-end;
+}
+
+.modal__transaction__add {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__transaction__add input, .modal__transaction__add select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #292934;
+    color: #fff;
+    background: none;
+    margin-bottom: 12px;
+}
+
+.modal__transaction__add input[type=submit] {
+    border: none;
+    background-image: linear-gradient(to bottom right, #ff2cdf, #0014ff);
 }
