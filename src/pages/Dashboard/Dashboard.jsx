@@ -8,7 +8,7 @@ export default function Dashboard() {
 
   return (
     <div className='dashboard'>
-      <h1>Hello, Diego</h1>
+      <h2>Hello, Diego 👋</h2>
       <Wallet />
       <Transactions />
     </div>

@@ -1,15 +1,14 @@
 .dashboard__wallet {
-  width: 600px;
-  margin: 12px 0;
-  padding: 36px;
-  border: 1px solid none;
+  margin: 12px auto;
+  padding: 24px;
   border-radius: 12px;
-  box-shadow: 0px 0px 4px 0px #ff2cdf inset;
+  background-color: #252934;
 }
 
 .dashboard__wallet__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 24px;
 }
 
@@ -36,9 +35,9 @@
   gap: 12px;
   background: linear-gradient(45deg, #CCFBFF, #EF96C5);
   color: black;
-  width: 250px;
+  width: 400px;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 24px;
 }
 
 .dashboard__wallet__list__item h3 small {

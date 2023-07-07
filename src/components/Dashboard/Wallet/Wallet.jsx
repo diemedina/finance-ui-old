@@ -23,7 +23,7 @@ export default function Wallet() {
     <>
       <section className='dashboard__wallet'>
         <div className="dashboard__wallet__header">
-          <h2>Wallet</h2>
+          <h2>My Wallet</h2>
           <button onClick={() => {setIsOpen(true)}}>
             <i className="material-symbols-outlined">add</i>            
           </button>

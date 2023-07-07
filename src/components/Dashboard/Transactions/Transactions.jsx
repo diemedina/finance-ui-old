@@ -3,8 +3,11 @@ import moment from 'moment';
 import Modal from '../../Modal/Modal';
 import MockTransaction from '../../../mocks/transactions';
 import './transactions.css';
+import { useNotificationsStore } from '../../../store/NotificationsStore';
+import { generateId } from '../../../plugins/generateId';
 
 export default function Transaction() {
+  const {addNotification, removeNotification} = useNotificationsStore();
   const [transactions, setTransaction] = useState(MockTransaction);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,9 +18,19 @@ export default function Transaction() {
     const formJson = Object.fromEntries(formData.entries());
     
     const _transaction = [...transactions];
-    _transaction.unshift({...formJson, date: new Date()});
+    _transaction.unshift({...formJson, date: new Date(), id: generateId()});
     setIsOpen(false);
     setTransaction(_transaction);
+    
+    const _notification = {
+      id: generateId(),
+      text: 'Add transaction successful',
+      type: 'success',
+      icon: 'check_circle'
+    }
+    
+    addNotification(_notification);
+    setTimeout(() => removeNotification(_notification.id), 5000);
   }
 
   return (
@@ -34,7 +47,7 @@ export default function Transaction() {
             transactions.map(transaction => {
               return (
                 <li key={transaction.id} className='dashboard__transaction__list__item'>
-                  <i className="material-symbols-outlined">{transaction.type}</i>
+                  <div className='icon'>🛍️</div>
                   <div className='dashboard__transaction__list__item__detail'>
                     <strong>{transaction.description}</strong>
                     <small>Shop</small>

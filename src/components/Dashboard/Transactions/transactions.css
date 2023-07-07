@@ -1,15 +1,14 @@
 .dashboard__transaction {
-    width: 600px;
-    margin: 12px 0;
-    padding: 36px;
-    border: 1px solid none;
+    margin: 12px auto;
+    padding: 24px;
     border-radius: 12px;
-    box-shadow: 0px 0px 4px 0px #ff2cdf inset;
+    background-color: #252934;
 }
 
 .dashboard__transaction__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 24px;
 }
 
@@ -25,7 +24,7 @@
 
 .dashboard__transaction__list {
     list-style: none;
-    padding: 24px 12px 0px 12px;
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -37,10 +36,15 @@
     gap: 20px;
 }
 
-.dashboard__transaction__list__item i {
-    background-color: #52586d;
-    padding: 12px;
-    border-radius: 50%;
+.dashboard__transaction__list__item .icon {
+    background: linear-gradient(45deg, #C22ED0, #5FFAE0);
+    border-radius: 12px;
+    font-size: 28px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dashboard__transaction__list__item small {
