@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'wouter';
-import './login.css';
+import './login.scss';
 
 export default function Login() {
   const [location, navigate] = useLocation();

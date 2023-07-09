@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNotificationsStore } from '../../store/NotificationsStore';
-import './notifications.css';
+import './notifications.scss';
 
 export default function Notifications() {
   const { listNotifications, removeNotification } = useNotificationsStore();

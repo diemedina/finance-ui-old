@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MockWallet from '../../../mocks/wallet';
 import Modal from '../../Modal/Modal';
-import './wallet.css';
+import './wallet.scss';
 
 export default function Wallet() {
   const [wallet, setWallet] = useState(MockWallet);

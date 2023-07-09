@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import Modal from '../../Modal/Modal';
 import MockTransaction from '../../../mocks/transactions';
-import './transactions.css';
 import { useNotificationsStore } from '../../../store/NotificationsStore';
 import { generateId } from '../../../plugins/generateId';
+import './transactions.scss';
 
 export default function Transaction() {
   const {addNotification, removeNotification} = useNotificationsStore();

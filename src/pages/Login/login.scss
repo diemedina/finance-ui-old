@@ -1,0 +1,25 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    input {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #292934;
+        color: #fff;
+        background: none;
+        
+        &[type=submit] {
+            border: none;
+            background-image: linear-gradient(to bottom right, #ff2cdf, #0014ff);
+        }
+    }
+}
