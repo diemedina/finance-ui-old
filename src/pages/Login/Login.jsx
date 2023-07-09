@@ -1,17 +1,14 @@
 import React from 'react';
 import { useLocation } from 'wouter';
+import { useForm } from 'react-hook-form';
 import './login.scss';
 
 export default function Login() {
+  const { register, handleSubmit, formState: {errors} } = useForm();
   const [location, navigate] = useLocation();
 
-  function submitForm(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
-
+  function submitForm(data) {
+    console.log(data);
     navigate("/dashboard");
   }
   
@@ -19,9 +16,12 @@ export default function Login() {
     <div className='login'>
       <h1>Sign in</h1>
 
-      <form onSubmit={submitForm}>
-        <input type="text" name="username" placeholder='Username'/>
-        <input type="password" name="password" placeholder='Password'/>
+      <form onSubmit={handleSubmit(submitForm)}>
+        <input {...register('username', {required: true})} type="text" placeholder='Username'/>
+        {errors.username && <small>* Username required</small>}
+  
+        <input {...register('password', {required: true})} type="password" placeholder='Password'/>
+        {errors.password && <small>* Password required</small>}
 
         <input type="submit" value="Login" />
       </form>

@@ -9,7 +9,7 @@
     align-items: center;
     
     &__notification {
-        background: black;
+        background: #252934;
         width: 300px;
         padding: 12px;
         display: flex;
@@ -19,18 +19,15 @@
         color: white;
         
         &.success {
-            border: 1px solid #00ff00;
-            box-shadow: inset 0px 0px 10px #00ff00;
+            border-bottom: 4px solid #00ff00;
         }
         
         &.alert {
-            border: 1px solid #ffff80;
-            box-shadow: inset 0px 0px 10px #ffff00;
+            border-bottom: 4px solid #ffff80;
         }
         
         &.error {
-            border: 1px solid #ff0000;
-            box-shadow: inset 0px 0px 10px #ff0000;
+            border-bottom: 4px solid #ff0000;
         }
         
         & i:last-child {

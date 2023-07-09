@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNotificationsStore } from '../../../store/NotificationsStore';
+import { useModal } from '../../../hooks/useModal';
 import MockWallet from '../../../mocks/wallet';
 import Modal from '../../Modal/Modal';
 import './wallet.scss';
 
 export default function Wallet() {
   const [wallet, setWallet] = useState(MockWallet);
-  const [isOpen, setIsOpen] = useState(false);
+  const {isOpen, openModal, closeModal} = useModal();
+  const {addNotification} = useNotificationsStore();
 
   function addCard(e) {
     e.preventDefault();
@@ -15,8 +18,14 @@ export default function Wallet() {
     
     const _wallet = [...wallet];
     _wallet.unshift({...formJson, balance: 0});
-    setIsOpen(false);
     setWallet(_wallet);
+
+    closeModal();
+    addNotification({
+      text: 'Add card successful',
+      type: 'success',
+      icon: 'check_circle'
+    });
   }
 
   return (
@@ -24,7 +33,7 @@ export default function Wallet() {
       <section className='dashboard__wallet'>
         <div className="dashboard__wallet__header">
           <h2>My Wallet</h2>
-          <button onClick={() => {setIsOpen(true)}}>
+          <button onClick={openModal}>
             <i className="material-symbols-outlined">add</i>            
           </button>
         </div>
@@ -47,7 +56,7 @@ export default function Wallet() {
       </section>
 
       { isOpen && 
-      <Modal title='Add card' setIsOpen={setIsOpen}>
+      <Modal title='Add card' closeModal={closeModal}>
         <form className='modal__transaction__add' onSubmit={addCard}>
           <label htmlFor="description">Description</label>
           <input type="text" name="description" id="description" placeholder='Description' />

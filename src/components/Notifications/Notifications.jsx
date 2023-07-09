@@ -10,10 +10,10 @@ export default function Notifications() {
       { 
         listNotifications.map(notification => {
           return (
-            <div className={`notifications__notification ${notification.type}`} key={notification.id}>
+            <div className={`notifications__notification animate__animated animate__fadeInDown ${notification.type} ${notification.class}`} key={notification.id}>
               <i className='material-symbols-outlined'>{notification.icon}</i>
               <span>{notification.text}</span>
-              <i className='material-symbols-outlined' onClick={() => removeNotification(notification.id)}>close</i>
+              <i className='material-symbols-outlined' onClick={() => removeNotification(notification)}>close</i>
             </div>
           )
         })

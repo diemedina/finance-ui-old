@@ -3,13 +3,14 @@ import moment from 'moment';
 import Modal from '../../Modal/Modal';
 import MockTransaction from '../../../mocks/transactions';
 import { useNotificationsStore } from '../../../store/NotificationsStore';
-import { generateId } from '../../../plugins/generateId';
+import { useModal } from '../../../hooks/useModal';
+import { v4 as uuid } from 'uuid';
 import './transactions.scss';
 
 export default function Transaction() {
-  const {addNotification, removeNotification} = useNotificationsStore();
+  const {addNotification} = useNotificationsStore();
   const [transactions, setTransaction] = useState(MockTransaction);
-  const [isOpen, setIsOpen] = useState(false);
+  const {isOpen, openModal, closeModal} = useModal();
 
   function addTransaction(e) {
     e.preventDefault();
@@ -18,19 +19,15 @@ export default function Transaction() {
     const formJson = Object.fromEntries(formData.entries());
     
     const _transaction = [...transactions];
-    _transaction.unshift({...formJson, date: new Date(), id: generateId()});
-    setIsOpen(false);
+    _transaction.unshift({...formJson, date: new Date(), id: uuid()});
     setTransaction(_transaction);
     
-    const _notification = {
-      id: generateId(),
+    closeModal();
+    addNotification({
       text: 'Add transaction successful',
       type: 'success',
       icon: 'check_circle'
-    }
-    
-    addNotification(_notification);
-    setTimeout(() => removeNotification(_notification.id), 5000);
+    });
   }
 
   return (
@@ -38,7 +35,7 @@ export default function Transaction() {
       <section className='dashboard__transaction'>
         <div className='dashboard__transaction__header'>
           <h2>Recent Transactions</h2>
-          <button onClick={() => {setIsOpen(true)}}>
+          <button onClick={openModal}>
             <i className="material-symbols-outlined">add</i>            
           </button>
         </div>
@@ -64,7 +61,7 @@ export default function Transaction() {
       </section>
 
       { isOpen && 
-      <Modal title='Add transaction' setIsOpen={setIsOpen}>
+      <Modal title='Add transaction' closeModal={closeModal}>
         <form className='modal__transaction__add' onSubmit={addTransaction}>
           <label htmlFor="type">Type</label>
           <select name="type" id="type">

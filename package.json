@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.1",
+    "uuidv4": "^6.2.13",
     "wouter": "^2.11.0",
     "zustand": "^4.3.9"
   },
