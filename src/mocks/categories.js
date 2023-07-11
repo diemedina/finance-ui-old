@@ -1,30 +1,37 @@
 export default {
   FOOD: {
     title: 'Food',
-    icon: '🍽️'
+    icon: '🍽️',
+    class: 'background-1'
   },
   SHOP: {
     title: 'Shop',
-    icon: '🛍️'
+    icon: '🛍️',
+    class: 'background-2'
   },
   HOUSE: {
     title: 'House',
-    icon: '🏠'
+    icon: '🏠',
+    class: 'background-3'
   },
   TRANSPORT: {
     title: 'Transport',
-    icon: '🚍'
+    icon: '🚍',
+    class: 'background-4'
   },
   CAR: {
     title: 'Car',
-    icon: '🚘'
+    icon: '🚘',
+    class: 'background-5'
   },
   ENTERTAINMENT: {
     title: 'Entertaiment',
-    icon: '🎭'
+    icon: '🎭',
+    class: 'background-6'
   },
   HEALTH: {
     title: 'Health',
-    icon: '🏥'
+    icon: '🏥',
+    class: 'background-7'
   }
 }

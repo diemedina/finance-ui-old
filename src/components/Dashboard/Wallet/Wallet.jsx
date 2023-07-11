@@ -41,7 +41,7 @@ export default function Wallet() {
           {
             wallet.map(card => {
               return (
-                <div className="dashboard__wallet__list__item" key={card.id}>
+                <div className={card.color + ' dashboard__wallet__list__item animate__animated animate__fadeIn'} key={card.id}>
                   <h3>{card.description} <small>{card.type}</small></h3>
                   <div>
                     <span>Balance</span>

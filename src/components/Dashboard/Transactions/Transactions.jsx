@@ -44,7 +44,7 @@ export default function Transaction() {
             transactions.map(transaction => {
               return (
                 <li key={transaction.id} className='dashboard__transaction__list__item animate__animated animate__fadeIn'>
-                  <div className='icon'>{MockCategories[transaction.type]?.icon}</div>
+                  <div className={MockCategories[transaction.type].class + ' icon'}>{MockCategories[transaction.type].icon}</div>
                   <div className='dashboard__transaction__list__item__detail'>
                     <strong>{transaction.description}</strong>
                     <small>{MockCategories[transaction.type]?.title}</small>
@@ -69,7 +69,7 @@ export default function Transaction() {
               Object.keys(MockCategories).map(category => {
                 return (
                   <li className={modelType == category ? 'active' : ''} onClick={() => setModelType(category)}>
-                    <div>{MockCategories[category].icon}</div>
+                    <div className={MockCategories[category].class}>{MockCategories[category].icon}</div>
                   </li>
                 )
               })

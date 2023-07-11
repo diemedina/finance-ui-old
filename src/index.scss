@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
 @import 'animate.css';
+@import './styles/variables';
 
 * {
   margin: 0px;
@@ -35,4 +36,32 @@ h1::after {
 ::-webkit-scrollbar-thumb {
   background: rgb(80, 80, 80); 
   border-radius: 10px;
+}
+
+.background-1 {
+  background: $gradient-1;
+}
+
+.background-2 {
+  background: $gradient-2;
+}
+
+.background-3 {
+  background: $gradient-3;
+}
+
+.background-4 {
+  background: $gradient-4;
+}
+
+.background-5 {
+  background: $gradient-5;
+}
+
+.background-6 {
+  background: $gradient-6;
+}
+
+.background-7 {
+  background: $gradient-7;
 }
