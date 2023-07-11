@@ -58,6 +58,18 @@ export default function Wallet() {
       { isOpen && 
       <Modal title='Add card' closeModal={closeModal}>
         <form className='modal__transaction__add' onSubmit={addCard}>
+          <label>Color</label>
+          <ul className='modal__transaction__colors'>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+
           <label htmlFor="description">Description</label>
           <input type="text" name="description" id="description" placeholder='Description' />
           
@@ -74,6 +86,9 @@ export default function Wallet() {
             <option value="MASTERCARD">MASTERCARD</option>
             <option value="AMERICAN EXPRESS">AMERICAN EXPRESS</option>
           </select>
+
+          <label htmlFor="balance">Balance</label>
+          <input type="number" name="balance" id="balance" placeholder='$'/>
 
           <input type="submit" value="Add" />
         </form>

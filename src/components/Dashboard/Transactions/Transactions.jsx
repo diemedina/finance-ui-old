@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import Modal from '../../Modal/Modal';
 import MockTransaction from '../../../mocks/transactions';
+import MockCategories from '../../../mocks/categories';
 import { useNotificationsStore } from '../../../store/NotificationsStore';
 import { useModal } from '../../../hooks/useModal';
 import { v4 as uuid } from 'uuid';
+import { useForm } from 'react-hook-form';
 import './transactions.scss';
 
 export default function Transaction() {
+  const { register, handleSubmit, formState: {errors} } = useForm();
   const {addNotification} = useNotificationsStore();
   const [transactions, setTransaction] = useState(MockTransaction);
   const {isOpen, openModal, closeModal} = useModal();
 
-  function addTransaction(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
-    
+  const [modelType, setModelType] = useState('FOOD');
+
+  function addTransaction(data) {
     const _transaction = [...transactions];
-    _transaction.unshift({...formJson, date: new Date(), id: uuid()});
+    _transaction.unshift({...data, type: modelType, date: new Date(), id: uuid()});
     setTransaction(_transaction);
     
     closeModal();
@@ -43,11 +43,11 @@ export default function Transaction() {
           { 
             transactions.map(transaction => {
               return (
-                <li key={transaction.id} className='dashboard__transaction__list__item'>
-                  <div className='icon'>🛍️</div>
+                <li key={transaction.id} className='dashboard__transaction__list__item animate__animated animate__fadeIn'>
+                  <div className='icon'>{MockCategories[transaction.type]?.icon}</div>
                   <div className='dashboard__transaction__list__item__detail'>
                     <strong>{transaction.description}</strong>
-                    <small>Shop</small>
+                    <small>{MockCategories[transaction.type]?.title}</small>
                   </div>
                   <div className='dashboard__transaction__list__item__price'>
                     <strong>$ {transaction.total}</strong>
@@ -62,17 +62,27 @@ export default function Transaction() {
 
       { isOpen && 
       <Modal title='Add transaction' closeModal={closeModal}>
-        <form className='modal__transaction__add' onSubmit={addTransaction}>
+        <form className='modal__transaction__add' onSubmit={handleSubmit(addTransaction)}>
           <label htmlFor="type">Type</label>
-          <select name="type" id="type">
-            <option value="shopping_cart">Shopping</option>
-          </select>
+          <ul className='modal__transaction__list-type'>
+            {
+              Object.keys(MockCategories).map(category => {
+                return (
+                  <li className={modelType == category ? 'active' : ''} onClick={() => setModelType(category)}>
+                    <div>{MockCategories[category].icon}</div>
+                  </li>
+                )
+              })
+            }
+          </ul>
 
           <label htmlFor="description">Description</label>
-          <input type="text" name="description" id="description" placeholder='Description' />
+          <input {...register('description', {required: true})} type="text" name="description" id="description" placeholder='Description' />
+          {errors.description && <small>* Description required</small>}
 
           <label htmlFor="total">Total</label>
-          <input type="number" name="total" id="total" placeholder='$' />
+          <input {...register('total', {required: true})} type="number" name="total" id="total" placeholder='$' />
+          {errors.total && <small>* Total required</small>}
 
           <input type="submit" value="Add" />
         </form>
