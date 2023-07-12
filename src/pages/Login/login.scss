@@ -1,3 +1,5 @@
+@import 'src/styles/variables';
+
 .login {
     display: flex;
     flex-direction: column;
@@ -13,7 +15,7 @@
     input {
         padding: 12px;
         border-radius: 8px;
-        border: 1px solid #292934;
+        border: 1px solid $dark-700;
         color: #fff;
         background: none;
         

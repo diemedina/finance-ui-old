@@ -7,16 +7,16 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <button className={active == 'HOME' ? 'active' : ''} onClick={() => setActive('HOME')}>
-        <span class="material-symbols-outlined">home</span>
+        <span className="material-symbols-outlined">home</span>
       </button>
       <button className={active == 'WALLET' ? 'active' : ''} onClick={() => setActive('WALLET')}>
-        <span class="material-symbols-outlined">wallet</span>
+        <span className="material-symbols-outlined">wallet</span>
       </button>
       <button className={active == 'MONITORING' ? 'active' : ''} onClick={() => setActive('MONITORING')}>
-        <span class="material-symbols-outlined">monitoring</span>
+        <span className="material-symbols-outlined">monitoring</span>
       </button>
       <button className={active == 'SETTINGS' ? 'active' : ''} onClick={() => setActive('SETTINGS')}>
-        <span class="material-symbols-outlined">settings</span>
+        <span className="material-symbols-outlined">settings</span>
       </button>
     </nav>
   )

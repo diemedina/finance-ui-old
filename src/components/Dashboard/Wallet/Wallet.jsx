@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { useNotificationsStore } from '../../../store/NotificationsStore';
-import { useModal } from '../../../hooks/useModal';
-import MockWallet from '../../../mocks/wallet';
+import React, { useEffect, useState } from 'react';
+import { useNotificationsStore } from 'src/store/NotificationsStore';
+import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
-import Modal from '../../Modal/Modal';
+import { useModal } from 'src/hooks/useModal';
+import MockWallet from 'src/mocks/wallet';
+import Modal from 'src/components/Modal/Modal';
 import './wallet.scss';
 
 export default function Wallet() {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [wallet, setWallet] = useState(MockWallet);
   const {isOpen, openModal, closeModal} = useModal();
   const {addNotification} = useNotificationsStore();
@@ -15,7 +16,7 @@ export default function Wallet() {
 
   function addCard(data) {
     const _wallet = [...wallet];
-    _wallet.unshift({...data, color: modelColor});
+    _wallet.unshift({...data, color: modelColor, id: uuid()});
     setWallet(_wallet);
 
     closeModal();
@@ -25,6 +26,27 @@ export default function Wallet() {
       icon: 'check_circle'
     });
   }
+
+  function removeCard(id) {
+    const _wallet = [...wallet];
+    setWallet(_wallet.filter(w => w.id != id));
+
+    addNotification({
+      text: 'Remove card successful',
+      type: 'success',
+      icon: 'check_circle'
+    });
+  }
+
+  useEffect(() => {
+    setModelColor('background-1');
+    reset({ 
+      description: "",
+      type: "DEBIT CARD",
+      entity: "VISA",
+      balance: ""
+    })
+  }, [isOpen]);
 
   return (
     <>
@@ -46,6 +68,10 @@ export default function Wallet() {
                     <h2>$ {card.balance}</h2>
                   </div>
                   <h3>{card.entity}</h3>
+
+                  <div className='dashboard__wallet__list__item__actions'>
+                    <span className="material-symbols-outlined" onClick={() => removeCard(card.id)}>delete</span>
+                  </div>
                 </div>
               )
             })
@@ -68,7 +94,7 @@ export default function Wallet() {
           </ul>
 
           <label htmlFor="description">Description</label>
-          <input {...register('description', {required: true})} type="text" name="description" id="description" placeholder='Description' />
+          <input {...register('description', {required: true})} type="text" name="description" id="description" placeholder='Description' autoComplete='off' />
           
           <label htmlFor="type">Type</label>
           <select {...register('type', {required: true})} name="type" id="type">
@@ -85,7 +111,7 @@ export default function Wallet() {
           </select>
 
           <label htmlFor="balance">Balance</label>
-          <input {...register('balance', {required: true})} type="number" name="balance" id="balance" placeholder='$'/>
+          <input {...register('balance', {required: true})} type="number" name="balance" id="balance" placeholder='$' autoComplete='off'/>
 
           <input type="submit" value="Add" />
         </form>

@@ -13,8 +13,8 @@ html, body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: #1a1b20;
-  color: #fff;
+  background: $dark-900;
+  color: $dark-100;
 }
 
 h1::after {

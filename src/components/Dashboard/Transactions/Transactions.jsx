@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import moment from 'moment';
-import Modal from 'src/components/Modal/Modal';
-import MockTransaction from 'src/mocks/transactions';
-import MockCategories from 'src/mocks/categories';
+import React, { useEffect, useState } from 'react';
 import { useNotificationsStore } from 'src/store/NotificationsStore';
 import { useModal } from 'src/hooks/useModal';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
+import moment from 'moment';
+import Modal from 'src/components/Modal/Modal';
+import MockTransaction from 'src/mocks/transactions';
+import MockCategories from 'src/mocks/categories';
 import './transactions.scss';
 
 export default function Transaction() {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const { register, handleSubmit, formState: {errors}, reset } = useForm();
   const {addNotification} = useNotificationsStore();
   const [transactions, setTransaction] = useState(MockTransaction);
   const {isOpen, openModal, closeModal} = useModal();
@@ -29,6 +29,14 @@ export default function Transaction() {
       icon: 'check_circle'
     });
   }
+
+  useEffect(() => {
+    setModelType('FOOD');
+    reset({ 
+      description: "",
+      total: ""
+    })
+  }, [isOpen]);
 
   return (
     <>
@@ -68,7 +76,7 @@ export default function Transaction() {
             {
               Object.keys(MockCategories).map(category => {
                 return (
-                  <li className={modelType == category ? 'active' : ''} onClick={() => setModelType(category)}>
+                  <li className={modelType == category ? 'active' : ''} onClick={() => setModelType(category)} key={category}>
                     <div className={MockCategories[category].class}>{MockCategories[category].icon}</div>
                   </li>
                 )

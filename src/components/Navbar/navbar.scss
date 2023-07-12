@@ -1,7 +1,9 @@
+@import 'src/styles/variables';
+
 .navbar {
     position: fixed;
     bottom: 20px;
-    background-color: #252934;
+    background-color: $dark-800;
     padding: 12px 0;
     width: 430px;
     border-radius: 12px;
@@ -10,7 +12,7 @@
 
     button {
         background: none;
-        color: #7e7e7e;
+        color: $dark-600;
         border: none;
         font-size: 24px;
 

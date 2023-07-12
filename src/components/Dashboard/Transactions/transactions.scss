@@ -1,10 +1,10 @@
-@import '../../../styles/variables';
+@import 'src/styles/variables';
 
 .dashboard__transaction {
   margin: 12px auto;
   padding: 24px;
   border-radius: 12px;
-  background-color: #252934;
+  background-color: $dark-800;
   
   &__header {
     display: flex;

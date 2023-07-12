@@ -1,10 +1,10 @@
-@import '../../../styles/variables';
+@import 'src/styles/variables';
 
 .dashboard__wallet {
   margin: 12px auto;
   padding: 24px;
   border-radius: 12px;
-  background-color: #252934;
+  background-color: $dark-800;
   &__header {
     display: flex;
     justify-content: space-between;
@@ -37,7 +37,14 @@
       min-width: 280px;
       padding: 12px;
       border-radius: 16px;
-      box-shadow: #1153fc81 0px 24px 20px -20px;
+      position: relative;
+      
+      &__actions {
+        transition: visibility 0s, opacity .2s linear;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+      }
     }
   
     h3 small {
