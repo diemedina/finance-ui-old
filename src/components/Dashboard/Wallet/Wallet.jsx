@@ -2,22 +2,20 @@ import React, { useState } from 'react';
 import { useNotificationsStore } from '../../../store/NotificationsStore';
 import { useModal } from '../../../hooks/useModal';
 import MockWallet from '../../../mocks/wallet';
+import { useForm } from 'react-hook-form';
 import Modal from '../../Modal/Modal';
 import './wallet.scss';
 
 export default function Wallet() {
+  const { register, handleSubmit, formState: {errors} } = useForm();
   const [wallet, setWallet] = useState(MockWallet);
   const {isOpen, openModal, closeModal} = useModal();
   const {addNotification} = useNotificationsStore();
+  const [modelColor, setModelColor] = useState('background-1');
 
-  function addCard(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
-    
+  function addCard(data) {
     const _wallet = [...wallet];
-    _wallet.unshift({...formJson, balance: 0});
+    _wallet.unshift({...data, color: modelColor});
     setWallet(_wallet);
 
     closeModal();
@@ -57,38 +55,37 @@ export default function Wallet() {
 
       { isOpen && 
       <Modal title='Add card' closeModal={closeModal}>
-        <form className='modal__transaction__add' onSubmit={addCard}>
+        <form className='modal__transaction__add' onSubmit={handleSubmit(addCard)}>
           <label>Color</label>
           <ul className='modal__transaction__colors'>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            {
+              [1,2,3,4,5,6,7,8].map(n => {
+                return (
+                  <li className={modelColor == `background-${n}` ? 'active' : ''} onClick={() => setModelColor(`background-${n}`)} key={n}></li>
+                )
+              })
+            }
           </ul>
 
           <label htmlFor="description">Description</label>
-          <input type="text" name="description" id="description" placeholder='Description' />
+          <input {...register('description', {required: true})} type="text" name="description" id="description" placeholder='Description' />
           
           <label htmlFor="type">Type</label>
-          <select name="type" id="type">
+          <select {...register('type', {required: true})} name="type" id="type">
             <option value="DEBIT CARD">Debit Card</option>
             <option value="CREDIT CARD">Credit Card</option>
             <option value="PREPAID CARD">Prepaid Card</option>
           </select>
 
           <label htmlFor="entity">Entity</label>
-          <select name="entity" id="entity">
+          <select {...register('entity', {required: true})} name="entity" id="entity">
             <option value="VISA">VISA</option>
             <option value="MASTERCARD">MASTERCARD</option>
             <option value="AMERICAN EXPRESS">AMERICAN EXPRESS</option>
           </select>
 
           <label htmlFor="balance">Balance</label>
-          <input type="number" name="balance" id="balance" placeholder='$'/>
+          <input {...register('balance', {required: true})} type="number" name="balance" id="balance" placeholder='$'/>
 
           <input type="submit" value="Add" />
         </form>

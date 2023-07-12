@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import Modal from '../../Modal/Modal';
-import MockTransaction from '../../../mocks/transactions';
-import MockCategories from '../../../mocks/categories';
-import { useNotificationsStore } from '../../../store/NotificationsStore';
-import { useModal } from '../../../hooks/useModal';
+import Modal from 'src/components/Modal/Modal';
+import MockTransaction from 'src/mocks/transactions';
+import MockCategories from 'src/mocks/categories';
+import { useNotificationsStore } from 'src/store/NotificationsStore';
+import { useModal } from 'src/hooks/useModal';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import './transactions.scss';
@@ -47,7 +47,7 @@ export default function Transaction() {
                   <div className={MockCategories[transaction.type].class + ' icon'}>{MockCategories[transaction.type].icon}</div>
                   <div className='dashboard__transaction__list__item__detail'>
                     <strong>{transaction.description}</strong>
-                    <small>{MockCategories[transaction.type]?.title}</small>
+                    <small>{MockCategories[transaction.type].title}</small>
                   </div>
                   <div className='dashboard__transaction__list__item__price'>
                     <strong>$ {transaction.total}</strong>

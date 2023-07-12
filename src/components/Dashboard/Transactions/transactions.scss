@@ -44,13 +44,14 @@
         justify-content: center;
         align-items: center;
       }
-        
+      
       small {
         font-weight: lighter;
         opacity: .6;
       }
-        
+      
       &__price, &__detail {
+        text-transform: capitalize;
         display: flex;
         flex-direction: column;
       }

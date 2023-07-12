@@ -1,0 +1,23 @@
+.navbar {
+    position: fixed;
+    bottom: 20px;
+    background-color: #252934;
+    padding: 12px 0;
+    width: 430px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+
+    button {
+        background: none;
+        color: #7e7e7e;
+        border: none;
+        font-size: 24px;
+
+        &.active {
+            color: white;
+            text-shadow: 0px 0px 24px white;
+            transition: all .3s;
+        }
+    }
+}
