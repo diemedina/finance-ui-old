@@ -32,7 +32,7 @@
         "sizes": "512x512"
       }
     ],
-    "start_url": "/?source=pwa",
+    "start_url": "https://finance-ui-nu.vercel.app/",
     "background_color": "#3367D6",
     "display": "standalone",
     "scope": "/",
