@@ -3,31 +3,31 @@
     "name": "Finance",
     "icons": [
       {
-        "src": "/images/maskable_icon_x48.png",
+        "src": "https://finance-ui-nu.vercel.app//images/maskable_icon_x48.png",
         "type": "image/png",
         "sizes": "48x48"
       },{
-        "src": "/images/maskable_icon_x72.png",
+        "src": "https://finance-ui-nu.vercel.app//images/maskable_icon_x72.png",
         "type": "image/png",
         "sizes": "72x72"
       },{
-        "src": "/images/maskable_icon_x96.png",
+        "src": "https://finance-ui-nu.vercel.app//images/maskable_icon_x96.png",
         "type": "image/png",
         "sizes": "96x96"
       },{
-        "src": "/images/maskable_icon_x128.png",
+        "src": "/https://finance-ui-nu.vercel.app/images/maskable_icon_x128.png",
         "type": "image/png",
         "sizes": "128x128"
       },{
-        "src": "/images/maskable_icon_x192.png",
+        "src": "https://finance-ui-nu.vercel.app//images/maskable_icon_x192.png",
         "type": "image/png",
         "sizes": "192x192"
       },{
-        "src": "/images/maskable_icon_x384.png",
+        "src": "https://finance-ui-nu.vercel.app//images/maskable_icon_x384.png",
         "type": "image/png",
         "sizes": "384x384"
       },{
-        "src": "/images/maskable_icon_x512.png",
+        "src": "https://finance-ui-nu.vercel.app//images/maskable_icon_x512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
@@ -35,7 +35,7 @@
     "start_url": "https://finance-ui-nu.vercel.app/",
     "background_color": "#3367D6",
     "display": "standalone",
-    "scope": "/",
+    "scope": "https://finance-ui-nu.vercel.app/",
     "theme_color": "#3367D6",
     "description": "Finance"
   }
