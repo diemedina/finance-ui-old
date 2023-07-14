@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/finance-ui/sw.js', { scope: '/finance-ui/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('https://diemedina.github.io/finance-ui/sw.js', { scope: 'https://diemedina.github.io/finance-ui/' })})}
