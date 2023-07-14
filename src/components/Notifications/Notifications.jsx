@@ -2,7 +2,7 @@ import React from 'react';
 import { useNotificationsStore } from '../../store/NotificationsStore';
 import './notifications.scss';
 
-export default function Notifications() {
+export const Notifications = () => {
   const { listNotifications, removeNotification } = useNotificationsStore();
 
   return (

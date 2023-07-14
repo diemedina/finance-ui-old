@@ -3,7 +3,7 @@ import { useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import './login.scss';
 
-export default function Login() {
+export const Login = () => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const [location, navigate] = useLocation();
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "wouter"
 import './navbar.scss'
 
 export default function Navbar() {
@@ -7,13 +8,17 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <button className={active == 'HOME' ? 'active' : ''} onClick={() => setActive('HOME')}>
-        <span className="material-symbols-outlined">home</span>
+        <Link href="/dashboard">
+          <span className="material-symbols-outlined">home</span>
+        </Link>
       </button>
       <button className={active == 'WALLET' ? 'active' : ''} onClick={() => setActive('WALLET')}>
         <span className="material-symbols-outlined">wallet</span>
       </button>
       <button className={active == 'MONITORING' ? 'active' : ''} onClick={() => setActive('MONITORING')}>
-        <span className="material-symbols-outlined">monitoring</span>
+        <Link href="/monitoring">
+          <span className="material-symbols-outlined">monitoring</span>
+        </Link>
       </button>
       <button className={active == 'SETTINGS' ? 'active' : ''} onClick={() => setActive('SETTINGS')}>
         <span className="material-symbols-outlined">settings</span>

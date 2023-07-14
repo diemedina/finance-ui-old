@@ -1,12 +1,13 @@
 @import 'src/styles/variables';
 
 .navbar {
+    left: 0;
+    right: 0;
+    bottom: 0;
     position: fixed;
-    bottom: 20px;
     background-color: $dark-800;
     padding: 12px 0;
-    width: 430px;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
     display: flex;
     justify-content: space-around;
 

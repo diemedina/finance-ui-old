@@ -67,7 +67,7 @@ export default function Wallet() {
                     <span>Balance</span>
                     <h2>$ {card.balance}</h2>
                   </div>
-                  <h3>{card.entity}</h3>
+                  <img src={`src/assets/${card.entity.toLowerCase()}.png`} alt={card.entity}></img>
 
                   <div className='dashboard__wallet__list__item__actions'>
                     <span className="material-symbols-outlined" onClick={() => removeCard(card.id)}>delete</span>
@@ -107,7 +107,7 @@ export default function Wallet() {
           <select {...register('entity', {required: true})} name="entity" id="entity">
             <option value="VISA">VISA</option>
             <option value="MASTERCARD">MASTERCARD</option>
-            <option value="AMERICAN EXPRESS">AMERICAN EXPRESS</option>
+            <option value="AMERICANEXPRESS">AMERICAN EXPRESS</option>
           </select>
 
           <label htmlFor="balance">Balance</label>
