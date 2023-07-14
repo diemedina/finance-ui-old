@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { useModal } from 'src/hooks/useModal';
 import MockWallet from 'src/mocks/wallet';
 import Modal from 'src/components/Modal/Modal';
+
+import Visa from 'src/assets/visa.png';
 import './wallet.scss';
 
 export default function Wallet() {
@@ -67,7 +69,7 @@ export default function Wallet() {
                     <span>Balance</span>
                     <h2>$ {card.balance}</h2>
                   </div>
-                  <img src={`src/assets/${card.entity.toLowerCase()}.png`} alt={card.entity}></img>
+                  <img src={Visa} alt={card.entity}></img>
 
                   <div className='dashboard__wallet__list__item__actions'>
                     <span className="material-symbols-outlined" onClick={() => removeCard(card.id)}>delete</span>
