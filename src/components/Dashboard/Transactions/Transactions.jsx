@@ -71,7 +71,6 @@ export default function Transaction() {
       { isOpen && 
       <Modal title='Add transaction' closeModal={closeModal}>
         <form className='modal__transaction__add' onSubmit={handleSubmit(addTransaction)}>
-          <label htmlFor="type">Type</label>
           <ul className='modal__transaction__list-type'>
             {
               Object.keys(MockCategories).map(category => {

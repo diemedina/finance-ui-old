@@ -7,7 +7,16 @@ import MockWallet from 'src/mocks/wallet';
 import Modal from 'src/components/Modal/Modal';
 
 import Visa from 'src/assets/visa.png';
+import MasterCard from 'src/assets/mastercard.png';
+import AmericanExpress from 'src/assets/americanexpress.png';
 import './wallet.scss';
+
+
+const IMAGE_SRC = {
+  "VISA": Visa,
+  "MASTERCARD": MasterCard,
+  "AMERICANEXPRESS": AmericanExpress
+}
 
 export default function Wallet() {
   const { register, handleSubmit, reset } = useForm();
@@ -69,7 +78,7 @@ export default function Wallet() {
                     <span>Balance</span>
                     <h2>$ {card.balance}</h2>
                   </div>
-                  <img src={Visa} alt={card.entity}></img>
+                  <img src={IMAGE_SRC[card.entity]} alt={card.entity}></img>
 
                   <div className='dashboard__wallet__list__item__actions'>
                     <span className="material-symbols-outlined" onClick={() => removeCard(card.id)}>delete</span>
