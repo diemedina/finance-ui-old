@@ -17,7 +17,7 @@ export const Login = () => {
     <>
       <Header />
       <div className='login'>
-        <h2>Sign in</h2>
+        <h1>Sign in</h1>
 
         <form onSubmit={handleSubmit(submitForm)}>
           <input {...register('username', {required: false})} type="text" placeholder='Username'/>

@@ -113,8 +113,8 @@ export default function Transaction() {
             <small>{MockCategories[transactionDetail.type].title}</small>
           </div>
           <div className='dashboard__transaction__list__item__price'>
-            <strong>$ {transactionDetail.total}</strong>
-            <small>{moment(transactionDetail.date).format('HH:mm')}</small>
+            <strong>- $ {transactionDetail.total}</strong>
+            <small>{moment(transactionDetail.date).format('ddd D HH:mm')}</small>
           </div>
         </div>
       </Modal>
