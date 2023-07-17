@@ -17,6 +17,30 @@ html, body {
   color: $dark-100;
 }
 
+#root::before {
+  content: '';
+  background: #FC76B3;
+  opacity: .2;
+  filter: blur(100px);
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  left: -50px;
+  top: 100px;
+}
+
+#root::after {
+  content: '';
+  background: #1153FC;
+  opacity: .2;
+  filter: blur(100px);
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  right: -50px;
+  bottom: 100px;
+}
+
 h1::after {
   content: '.';
   color: #ff2cdf;

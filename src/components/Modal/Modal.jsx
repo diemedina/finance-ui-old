@@ -7,7 +7,7 @@ export default function Modal({ children, title, closeModal }) {
       <div className="modal__overlay animate__animated animate__fadeIn" onClick={closeModal}>
         <div className="modal" onClick={(e) => e.stopPropagation()}>
           <div className="modal__header">
-            <h1>{title}</h1>
+            <h2>{title}</h2>
             <i className="material-symbols-outlined" onClick={closeModal}>
               close
             </i>

@@ -1,26 +1,32 @@
 import React, { useState } from 'react'
-import { Link } from "wouter"
+import { Link, useLocation } from "wouter"
 import './navbar.scss'
 
-export default function Navbar() {
-  const [active, setActive] = useState('HOME');
+export const Navbar = () => {
+  const [location] = useLocation();
+  const [active] = useState(location);
 
   return (
     <nav className="navbar">
-      <button className={active == 'HOME' ? 'active' : ''} onClick={() => setActive('HOME')}>
-        <Link href="/dashboard">
-          <span className="material-symbols-outlined">home</span>
-        </Link>
-      </button>
-      <button className={active == 'WALLET' ? 'active' : ''} onClick={() => setActive('WALLET')}>
+      <Link href="/dashboard">
+        <button className={active == '/dashboard' ? 'active' : ''}>
+            <span className="material-symbols-outlined">home</span>
+        </button>
+      </Link>
+      <button className={active == 'WALLET' ? 'active' : ''}>
         <span className="material-symbols-outlined">wallet</span>
       </button>
-      <button className={active == 'MONITORING' ? 'active' : ''} onClick={() => setActive('MONITORING')}>
-        <Link href="/monitoring">
-          <span className="material-symbols-outlined">monitoring</span>
-        </Link>
+
+      <button className='navbar__add'>
+        <span className='material-symbols-outlined'>add</span>
       </button>
-      <button className={active == 'SETTINGS' ? 'active' : ''} onClick={() => setActive('SETTINGS')}>
+
+      <Link href="/monitoring">
+        <button className={active == '/monitoring' ? 'active' : ''}>
+            <span className="material-symbols-outlined">monitoring</span>
+        </button>
+      </Link>
+      <button className={active == 'SETTINGS' ? 'active' : ''}>
         <span className="material-symbols-outlined">settings</span>
       </button>
     </nav>

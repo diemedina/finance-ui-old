@@ -21,7 +21,7 @@ const IMAGE_SRC = {
 export default function Wallet() {
   const { register, handleSubmit, reset } = useForm();
   const [wallet, setWallet] = useState(MockWallet);
-  const {isOpen, openModal, closeModal} = useModal();
+  const [isOpen, openModal, closeModal] = useModal();
   const {addNotification} = useNotificationsStore();
   const [modelColor, setModelColor] = useState('background-1');
 
@@ -64,7 +64,7 @@ export default function Wallet() {
       <section className='dashboard__wallet'>
         <div className="dashboard__wallet__header">
           <h2>My Wallet</h2>
-          <button onClick={openModal}>
+          <button onClick={() => openModal()}>
             <i className="material-symbols-outlined">add</i>            
           </button>
         </div>
@@ -91,7 +91,7 @@ export default function Wallet() {
       </section>
 
       { isOpen && 
-      <Modal title='Add card' closeModal={closeModal}>
+      <Modal title='Add card' closeModal={() => closeModal()}>
         <form className='modal__transaction__add' onSubmit={handleSubmit(addCard)}>
           <label>Color</label>
           <ul className='modal__transaction__colors'>

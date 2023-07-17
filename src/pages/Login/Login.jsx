@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
+import { Header } from 'src/components/Header/Header';
 import './login.scss';
 
 export const Login = () => {
@@ -13,18 +14,21 @@ export const Login = () => {
   }
   
   return (
-    <div className='login'>
-      <h2>Sign in</h2>
+    <>
+      <Header />
+      <div className='login'>
+        <h2>Sign in</h2>
 
-      <form onSubmit={handleSubmit(submitForm)}>
-        <input {...register('username', {required: true})} type="text" placeholder='Username'/>
-        {errors.username && <small>* Username required</small>}
-  
-        <input {...register('password', {required: true})} type="password" placeholder='Password'/>
-        {errors.password && <small>* Password required</small>}
+        <form onSubmit={handleSubmit(submitForm)}>
+          <input {...register('username', {required: false})} type="text" placeholder='Username'/>
+          {errors.username && <small>* Username required</small>}
+    
+          <input {...register('password', {required: false})} type="password" placeholder='Password'/>
+          {errors.password && <small>* Password required</small>}
 
-        <input type="submit" value="Login" />
-      </form>
-    </div>
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </>
   )
 }

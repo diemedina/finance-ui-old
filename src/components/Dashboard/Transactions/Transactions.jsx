@@ -13,7 +13,10 @@ export default function Transaction() {
   const { register, handleSubmit, formState: {errors}, reset } = useForm();
   const {addNotification} = useNotificationsStore();
   const [transactions, setTransaction] = useState(MockTransaction);
-  const {isOpen, openModal, closeModal} = useModal();
+  const [isOpen, openModal, closeModal] = useModal();
+
+  const [isOpenDetail, openModalDetail, closeModalDetail] = useModal();
+  const [transactionDetail, setTransactionDetail] = useState();
 
   const [modelType, setModelType] = useState('FOOD');
 
@@ -30,6 +33,11 @@ export default function Transaction() {
     });
   }
 
+  function viewDetail(transaction) {
+    setTransactionDetail(transaction);
+    openModalDetail();
+  }
+
   useEffect(() => {
     setModelType('FOOD');
     reset({ 
@@ -43,7 +51,7 @@ export default function Transaction() {
       <section className='dashboard__transaction'>
         <div className='dashboard__transaction__header'>
           <h2>Recent Transactions</h2>
-          <button onClick={openModal}>
+          <button onClick={() => openModal()}>
             <i className="material-symbols-outlined">add</i>            
           </button>
         </div>
@@ -51,15 +59,15 @@ export default function Transaction() {
           { 
             transactions.map(transaction => {
               return (
-                <li key={transaction.id} className='dashboard__transaction__list__item animate__animated animate__fadeIn'>
+                <li key={transaction.id} className='dashboard__transaction__list__item animate__animated animate__fadeIn' onClick={() => viewDetail(transaction)}>
                   <div className={MockCategories[transaction.type].class + ' icon'}>{MockCategories[transaction.type].icon}</div>
                   <div className='dashboard__transaction__list__item__detail'>
                     <strong>{transaction.description}</strong>
                     <small>{MockCategories[transaction.type].title}</small>
                   </div>
                   <div className='dashboard__transaction__list__item__price'>
-                    <strong>$ {transaction.total}</strong>
-                    <small>{moment(transaction.date).format('HH:mm')}</small>
+                    <strong>- $ {transaction.total}</strong>
+                    <small>{moment(transaction.date).format('ddd D HH:mm')}</small>
                   </div>
                 </li>
               )
@@ -69,7 +77,7 @@ export default function Transaction() {
       </section>
 
       { isOpen && 
-      <Modal title='Add transaction' closeModal={closeModal}>
+      <Modal title='Add transaction' closeModal={() => closeModal()}>
         <form className='modal__transaction__add' onSubmit={handleSubmit(addTransaction)}>
           <ul className='modal__transaction__list-type'>
             {
@@ -95,6 +103,23 @@ export default function Transaction() {
         </form>
       </Modal>
       }
+
+      { isOpenDetail && 
+      <Modal title='Detail transaction' closeModal={() => closeModalDetail()}>
+        <div key={transactionDetail.id} className='dashboard__transaction__list__item animate__animated animate__fadeIn'>
+          <div className={MockCategories[transactionDetail.type].class + ' icon'}>{MockCategories[transactionDetail.type].icon}</div>
+          <div className='dashboard__transaction__list__item__detail'>
+            <strong>{transactionDetail.description}</strong>
+            <small>{MockCategories[transactionDetail.type].title}</small>
+          </div>
+          <div className='dashboard__transaction__list__item__price'>
+            <strong>$ {transactionDetail.total}</strong>
+            <small>{moment(transactionDetail.date).format('HH:mm')}</small>
+          </div>
+        </div>
+      </Modal>
+      }
+
     </>
   )
 }

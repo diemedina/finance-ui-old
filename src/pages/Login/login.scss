@@ -6,6 +6,9 @@
     gap: 20px;
     width: 100vw;
     padding: 0 24px;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
     
     form {
         display: flex;
