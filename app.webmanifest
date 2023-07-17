@@ -33,9 +33,9 @@
       }
     ],
     "start_url": "https://finance-ui-nu.vercel.app/",
-    "background_color": "black",
+    "background_color": "#121212",
     "display": "standalone",
     "scope": "https://finance-ui-nu.vercel.app/",
-    "theme_color": "black",
+    "theme_color": "#121212",
     "description": "Finance"
   }
