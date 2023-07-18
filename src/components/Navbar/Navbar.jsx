@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from "wouter"
 import { useModalStore } from 'src/store/ModalStore';
-import { ModalAddTransaction } from 'src/Components/Modal/AddTransaction/AddTransaction';
+import { AddTransaction } from 'src/Components/Modal/AddTransaction/AddTransaction';
 import './navbar.scss'
 
 export const Navbar = () => {
@@ -35,7 +35,7 @@ export const Navbar = () => {
         </button>
       </nav>
 
-      <ModalAddTransaction />
+      <AddTransaction />
     </>
   )
 }
