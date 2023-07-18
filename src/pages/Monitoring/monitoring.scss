@@ -1,6 +1,73 @@
 .monitoring {
-    padding: 0 24px;
-    width: 100vw;
+  padding: 0 24px;
+  width: 100vw;
+  margin-top: 24px;
+  margin-bottom: 100px;
+
+  &__header {
+    width: 100%;
     margin-top: 24px;
-    margin-bottom: 100px;
+
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      background: #20242f;
+      padding: 8px 24px;
+      border-radius: 12px;
+      font-size: 12px;
+
+      li {
+        opacity: .6;
+        font-weight: lighter;
+
+        &.active {
+          opacity: 1;
+          color: white;
+          text-shadow: 0px 0px 24px white;
+          font-weight: bold;
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+
+  &__expence-income {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+
+    .expence, .income {
+      width: 100%;
+      display: flex;
+      gap: 12px;
+      background: #20242f;
+      padding: 12px;
+      border-radius: 12px;
+
+      &__detail {
+        display: flex;
+        flex-direction: column;
+
+        span {
+          opacity: .8;
+        }
+        
+        small {
+          opacity: .4;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .expence .icon {
+      color: #4caf50;
+      text-shadow: 0px 0px 20px #4caf50;
+    }
+
+    .income .icon {
+      color: #f44336;
+      text-shadow: 0px 0px 20px #f44336;
+    }
+  }
 }
