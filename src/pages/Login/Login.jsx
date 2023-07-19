@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
-import { Header } from 'src/components/Header/Header';
 import './login.scss';
 
 export const Login = () => {
@@ -15,7 +14,6 @@ export const Login = () => {
   
   return (
     <>
-      <Header />
       <div className='login'>
         <h1>Sign in</h1>
 
