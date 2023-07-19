@@ -29,7 +29,7 @@ html, body {
   top: 100px;
 }
 
-#root::after {
+body::before {
   content: '';
   background: #1153FC;
   opacity: .2;

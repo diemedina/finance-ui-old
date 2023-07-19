@@ -1,3 +1,5 @@
+@import 'src/styles/variables';
+
 .monitoring {
   padding: 0 24px;
   width: 100vw;
@@ -35,7 +37,7 @@
   &__expence-income {
     display: flex;
     gap: 12px;
-    margin-top: 24px;
+    margin: 24px 0px 12px 0px;
 
     .expence, .income {
       width: 100%;
@@ -68,6 +70,104 @@
     .income .icon {
       color: #f44336;
       text-shadow: 0px 0px 20px #f44336;
+    }
+  }
+
+  &__graph {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    gap: 12px;
+    background: #20242f;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 12px 0;
+    height: 240px;
+
+    &__item {
+      display: flex;
+      align-items: center;  
+      flex-direction: column;
+      gap: 12px;
+      height: 216px;
+      text-align: center; 
+
+      &__bar {
+        height: 180px;
+        background-color: #444348;
+        width: 12px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: hidden;
+
+        .income, .expence {
+          width: 12px;
+          border-radius: 12px;
+        }
+
+        .income {
+          background-color: #f44336;
+        }
+        
+        .expence {
+          background-color: #4caf50;
+        }
+      }
+    }
+
+
+
+  }
+
+  &__top-categories {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #20242f;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 12px 0;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      &__item {
+        display: flex;
+        gap: 12px;
+
+        .icon {
+          border-radius: 12px;
+          font-size: 28px;
+          width: 48px;
+          height: 48px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &__detail {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          width: 100%;
+
+          small {
+            opacity: .4;
+          }
+
+          div {
+            width: 100%;
+            background-color: #444348;
+            height: 12px;
+            border-radius: 12px;
+          }
+        }
+      }
     }
   }
 }
