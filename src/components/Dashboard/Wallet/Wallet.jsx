@@ -5,18 +5,8 @@ import { useForm } from 'react-hook-form';
 import { useModal } from 'src/hooks/useModal';
 import MockWallet from 'src/mocks/wallet';
 import Modal from 'src/components/Modal/Modal';
-
-import Visa from 'src/assets/visa.png';
-import MasterCard from 'src/assets/mastercard.png';
-import AmericanExpress from 'src/assets/americanexpress.png';
 import './wallet.scss';
-
-
-const IMAGE_SRC = {
-  "VISA": Visa,
-  "MASTERCARD": MasterCard,
-  "AMERICANEXPRESS": AmericanExpress
-}
+import { CreditCard } from '../../CreditCard/CreditCard';
 
 export default function Wallet() {
   const { register, handleSubmit, reset } = useForm();
@@ -72,18 +62,7 @@ export default function Wallet() {
           {
             wallet.map(card => {
               return (
-                <div className={card.color + ' dashboard__wallet__list__item animate__animated animate__fadeIn'} key={card.id}>
-                  <h3>{card.description} <small>{card.type}</small></h3>
-                  <div>
-                    <span>Balance</span>
-                    <h2>$ {card.balance}</h2>
-                  </div>
-                  <img src={IMAGE_SRC[card.entity]} alt={card.entity}></img>
-
-                  <div className='dashboard__wallet__list__item__actions'>
-                    <span className="material-symbols-outlined" onClick={() => removeCard(card.id)}>delete</span>
-                  </div>
-                </div>
+                <CreditCard card={card} />
               )
             })
           }

@@ -30,40 +30,6 @@
     gap: 12px;
     margin-top: 24px;
     overflow-x: scroll;
-    
-    &__item {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      color: white;
-      min-width: 280px;
-      padding: 12px;
-      border-radius: 16px;
-      position: relative;
-      
-      &__actions {
-        transition: visibility 0s, opacity .2s linear;
-        position: absolute;
-        top: 16px;
-        right: 16px;
-      }
-
-      img {
-        margin-left: auto;
-        width: 32px;
-      }
-    }
-  
-    h3 small {
-      display: block;
-      font-weight: bold;
-      font-size: 8px;
-      opacity: .7;
-    }
-    
-    h3:last-child {
-      margin-left: auto;
-    }
   }
 }
 

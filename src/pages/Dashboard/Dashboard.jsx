@@ -8,6 +8,7 @@ export const Dashboard = () => {
   return (
     <div className='dashboard'>
       <h2>Hello, Diego 👋</h2>
+
       <Wallet />
       <Transactions />
       <Navbar />

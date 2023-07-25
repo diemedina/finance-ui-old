@@ -1,0 +1,40 @@
+.credit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: white;
+  min-width: 280px;
+  padding: 12px;
+  border-radius: 16px;
+  position: relative;
+
+  &__actions {
+    transition: visibility 0s, opacity 0.2s linear;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  &__balance-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  img {
+    margin-left: auto;
+    width: 32px;
+    height: fit-content;
+  }
+
+  h3 small {
+    display: block;
+    font-weight: bold;
+    font-size: 8px;
+    opacity: .7;
+  }
+  
+  h3:last-child {
+    margin-left: auto;
+  }
+}

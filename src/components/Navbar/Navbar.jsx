@@ -17,9 +17,11 @@ export const Navbar = () => {
               <span className="material-symbols-outlined">home</span>
           </button>
         </Link>
-        <button className={active == 'WALLET' ? 'active' : ''}>
-          <span className="material-symbols-outlined">wallet</span>
-        </button>
+        <Link href="/wallet">
+          <button className={active == '/wallet' ? 'active' : ''}>
+            <span className="material-symbols-outlined">wallet</span>
+          </button>
+        </Link>
 
         <button className='navbar__add' onClick={() => setModalActive('ADD_TRANSACTION')}>
           <span className='material-symbols-outlined'>add</span>

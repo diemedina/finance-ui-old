@@ -147,8 +147,6 @@ export const Monitoring = () => {
         </div>
       </div>
 
-
-
       <Navbar />
     </div>
   )
