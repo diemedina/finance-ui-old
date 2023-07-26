@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { CreditCard } from "src/components/CreditCard/CreditCard";
 import { Navbar } from "src/components/Navbar/Navbar";
 import MockWallet from 'src/mocks/wallet';
-import { CreditCard } from "src/components/CreditCard/CreditCard";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards } from 'swiper/modules';
 import "./wallet.scss";
+import 'swiper/css';
+import 'swiper/css/effect-cards';
 
 export const Wallet = () => {
   const [wallet] = useState(MockWallet);
@@ -11,15 +15,17 @@ export const Wallet = () => {
     <div className="wallet">
       <h2>Wallet</h2>
       
-      <div className='wallet__list'>
+      <Swiper modules={[EffectCards]} effect="cards">
         {
           wallet.map(card => {
             return (
-              <CreditCard card={card}/>
+              <SwiperSlide key={card.id}>
+                <CreditCard card={card}/>
+              </SwiperSlide>
             )
           })
         }
-      </div>
+      </Swiper>
 
       <Navbar />
     </div>

@@ -26,12 +26,6 @@ export const CreditCard = ({card}) => {
         </div>
         <img src={IMAGE_SRC[card.entity]} alt={card.entity}></img>
       </div>
-
-      <div className="credit-card__actions">
-        <span className="material-symbols-outlined" onClick={() => removeCard(card.id)}>
-          delete
-        </span>
-      </div>
     </div>
   );
 };
