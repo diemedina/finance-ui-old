@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Navbar } from 'src/components/Navbar/Navbar';
 import MockCategories from 'src/mocks/categories';
 import './monitoring.scss';
 
@@ -146,8 +145,6 @@ export const Monitoring = () => {
           </div>
         </div>
       </div>
-
-      <Navbar />
     </div>
   )
 }

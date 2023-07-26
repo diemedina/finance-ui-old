@@ -64,7 +64,7 @@ export default function Wallet() {
           {
             wallet.map(card => {
               return (
-                <CreditCard card={card} />
+                <CreditCard card={card} key={card.id}/>
               )
             })
           }

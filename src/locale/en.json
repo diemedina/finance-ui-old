@@ -16,6 +16,11 @@
       "my_wallet": "My Wallet",
       "recent_transactions": "Recent Transactions"
     },
+    "wallet": {
+      "title": "Wallet",
+      "edit": "Edit",
+      "remove": "Remove"
+    },
     "credit_card": {
       "balance": "Balance"
     },

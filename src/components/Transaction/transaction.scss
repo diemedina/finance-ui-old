@@ -1,0 +1,36 @@
+.transaction {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+
+  .icon {
+    border-radius: 12px;
+    font-size: 28px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  small {
+    font-weight: lighter;
+    opacity: .6;
+  }
+  
+  &__price, &__detail {
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+  }
+    
+  &__price {
+    margin-left: auto;
+    align-items: flex-end;
+
+    strong {
+      color: #ff4a3d;
+    }
+  }
+}

@@ -15,7 +15,7 @@ export const CreditCard = ({card}) => {
   const { t } = useTranslation();
 
   return (
-    <div className={card.color + " credit-card animate__animated animate__fadeIn"} key={card.id}>
+    <div className={card.color + " credit-card"} key={card.id}>
       <h3>
         {card.description} <small>{card.type}</small>
       </h3>
