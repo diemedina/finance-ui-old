@@ -1,0 +1,36 @@
+{
+  "translation": {
+    "common": {
+      "form": {
+        "required": "Required"
+      }
+    },
+    "login": {
+      "title": "Sign in",
+      "username": "Username",
+      "password": "Password",
+      "action": "Login"
+    },
+    "dashboard": {
+      "hello": "Hello",
+      "my_wallet": "My Wallet",
+      "recent_transactions": "Recent Transactions"
+    },
+    "credit_card": {
+      "balance": "Balance"
+    },
+    "modal": {
+      "credit_card": {
+        "color": "Color",
+        "description": "Description",
+        "type": "Type",
+        "debit": "Debit Card",
+        "credit": "Credit Card",
+        "prepaid": "Prepaid Card",
+        "entity": "Entity",
+        "balance": "Balance",
+        "action": "Add" 
+      }
+    }
+  }
+}

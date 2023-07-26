@@ -5,8 +5,9 @@ import { useForm } from 'react-hook-form';
 import { useModal } from 'src/hooks/useModal';
 import MockWallet from 'src/mocks/wallet';
 import Modal from 'src/components/Modal/Modal';
-import './wallet.scss';
 import { CreditCard } from '../../CreditCard/CreditCard';
+import { useTranslation } from 'react-i18next';
+import './wallet.scss';
 
 export default function Wallet() {
   const { register, handleSubmit, reset } = useForm();
@@ -14,6 +15,7 @@ export default function Wallet() {
   const [isOpen, openModal, closeModal] = useModal();
   const {addNotification} = useNotificationsStore();
   const [modelColor, setModelColor] = useState('background-1');
+  const { t } = useTranslation();
 
   function addCard(data) {
     const _wallet = [...wallet];
@@ -53,7 +55,7 @@ export default function Wallet() {
     <>
       <section className='dashboard__wallet'>
         <div className="dashboard__wallet__header">
-          <h2>My Wallet</h2>
+          <h2>{t('dashboard.my_wallet')}</h2>
           <button onClick={() => openModal()}>
             <i className="material-symbols-outlined">add</i>            
           </button>
@@ -72,7 +74,7 @@ export default function Wallet() {
       { isOpen && 
       <Modal title='Add card' closeModal={() => closeModal()}>
         <form className='modal__transaction__add' onSubmit={handleSubmit(addCard)}>
-          <label>Color</label>
+          <label>{t("modal.credit_card.color")}</label>
           <ul className='modal__transaction__colors'>
             {
               [1,2,3,4,5,6,7,8].map(n => {
@@ -83,27 +85,27 @@ export default function Wallet() {
             }
           </ul>
 
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">{t("modal.credit_card.description")}</label>
           <input {...register('description', {required: true})} type="text" name="description" id="description" placeholder='Description' autoComplete='off' />
           
-          <label htmlFor="type">Type</label>
+          <label htmlFor="type">{t("modal.credit_card.type")}</label>
           <select {...register('type', {required: true})} name="type" id="type">
-            <option value="DEBIT CARD">Debit Card</option>
-            <option value="CREDIT CARD">Credit Card</option>
-            <option value="PREPAID CARD">Prepaid Card</option>
+            <option value="DEBIT CARD">{t("modal.credit_card.debit")}</option>
+            <option value="CREDIT CARD">{t("modal.credit_card.credit")}</option>
+            <option value="PREPAID CARD">{t("modal.credit_card.prepaid")}</option>
           </select>
 
-          <label htmlFor="entity">Entity</label>
+          <label htmlFor="entity">{t("modal.credit_card.entity")}</label>
           <select {...register('entity', {required: true})} name="entity" id="entity">
             <option value="VISA">VISA</option>
             <option value="MASTERCARD">MASTERCARD</option>
             <option value="AMERICANEXPRESS">AMERICAN EXPRESS</option>
           </select>
 
-          <label htmlFor="balance">Balance</label>
+          <label htmlFor="balance">{t("modal.credit_card.balance")}</label>
           <input {...register('balance', {required: true})} type="number" name="balance" id="balance" placeholder='$' autoComplete='off'/>
 
-          <input type="submit" value="Add" />
+          <input type="submit" value={t("modal.credit_card.action")} />
         </form>
       </Modal>
       }

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useModal } from 'src/hooks/useModal';
 import moment from 'moment';
-import Modal from 'src/components/Modal/Modal';
 import MockTransaction from 'src/mocks/transactions';
 import MockCategories from 'src/mocks/categories';
+import Modal from 'src/components/Modal/Modal';
 import './transactions.scss';
 
 export default function Transaction() {
+  const { t } = useTranslation();
   const [transactions, setTransaction] = useState(MockTransaction);
 
   const [isOpenDetail, openModalDetail, closeModalDetail] = useModal();
@@ -21,7 +23,7 @@ export default function Transaction() {
     <>
       <section className='dashboard__transaction'>
         <div className='dashboard__transaction__header'>
-          <h2>Recent Transactions</h2>
+          <h2>{t('dashboard.recent_transactions')}</h2>
         </div>
         <ul className='dashboard__transaction__list'>
           { 
