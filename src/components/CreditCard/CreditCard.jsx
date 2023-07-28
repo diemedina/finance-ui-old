@@ -11,11 +11,11 @@ const IMAGE_SRC = {
   "AMERICANEXPRESS": AmericanExpress
 }
 
-export const CreditCard = ({card}) => {
+export const CreditCard = ({card, size}) => {
   const { t } = useTranslation();
 
   return (
-    <div className={card.color + " credit-card"} key={card.id}>
+    <div className={card.color + " " + size + " credit-card"} key={card.id}>
       <h3>
         {card.description} <small>{card.type}</small>
       </h3>

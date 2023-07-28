@@ -8,6 +8,15 @@
   border-radius: 16px;
   position: relative;
 
+  &.small {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .credit-card__balance-image div {
+      display: none;
+    }
+  }
+
   &__balance-image {
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,90 @@
+.modal__transaction__add {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  &__cost-type {
+    display: flex;
+    gap: 12px;
+
+    .expence, .income {
+      width: 100%;
+      display: flex;
+      gap: 12px;
+      background: #20242f;
+      padding: 12px;
+      border-radius: 12px;
+      opacity: .7;
+     
+      .icon {
+        opacity: .3;
+      }
+      
+      &.active {
+        opacity: 1;
+        transition: all .5s;
+        
+        .icon {
+          opacity: 1;
+        }
+        
+        &.expence .icon {
+          color: #4caf50;
+          text-shadow: 0px 0px 20px #4caf50;
+        }
+    
+        &.income .icon {
+          color: #f44336;
+          text-shadow: 0px 0px 20px #f44336;
+        }
+      }
+    }
+    
+
+  }
+
+  &__credit-card, &__list-type {
+    .swiper-pagination {
+      position: initial;
+    }
+  }
+
+  &__list-type {
+    .icon {
+      opacity: .6;
+      border-radius: 12px;
+      font-size: 28px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .input-total {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+  }
+
+
+  input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #292934;
+    color: #fff;
+    background: none;
+  }
+
+  input[type=submit] {
+    border: none;
+    background-image: linear-gradient(to bottom right, #ff2cdf, #0014ff);
+  }
+}

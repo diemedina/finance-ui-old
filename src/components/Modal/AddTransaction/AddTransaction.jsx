@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form';
 import { useNotificationsStore } from 'src/store/NotificationsStore';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useModalStore } from 'src/store/ModalStore';
-import Modal from 'src/components/Modal/Modal';
-import MockCategories from 'src/mocks/categories';
+import { Pagination, EffectCards } from 'swiper/modules';
 import { v4 as uuid } from 'uuid';
+import { useForm } from 'react-hook-form';
+import { CreditCard } from "src/components/CreditCard/CreditCard";
+import MockCategories from 'src/mocks/categories';
+import MockWallet from 'src/mocks/wallet';
+import Modal from 'src/components/Modal/Modal';
+import './addTransaction.scss';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
 export const ModalAddTransaction = () => {
   const { register, handleSubmit, formState: {errors}, reset } = useForm();
   const {addNotification} = useNotificationsStore();
   const {modalActive, setModalActive} = useModalStore();
   const [modelType, setModelType] = useState('FOOD');
+  const [typeCost, setTypeCost] = useState('expence');
+  const [wallet] = useState(MockWallet);
 
   function addTransaction(data) {
     const model = {
@@ -44,25 +54,73 @@ export const ModalAddTransaction = () => {
       { modalActive == 'ADD_TRANSACTION' && 
         <Modal title='Add transaction' closeModal={() => setModalActive()}>
           <form className='modal__transaction__add' onSubmit={handleSubmit(addTransaction)}>
-            <ul className='modal__transaction__list-type'>
-              {
-                Object.keys(MockCategories).map(category => {
-                  return (
-                    <li className={modelType == category ? 'active' : ''} onClick={() => setModelType(category)} key={category}>
-                      <div className={MockCategories[category].class}>{MockCategories[category].icon}</div>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-  
+
+            <div className='modal__transaction__add__cost-type'>
+              <div className={typeCost == 'expence' ? 'expence active' : 'expence'} onClick={() => setTypeCost('expence')}>
+                <span className="material-symbols-outlined icon">trending_up</span>
+                Expence
+              </div>
+              <div className={typeCost == 'income' ? 'income active' : 'income'} onClick={() => setTypeCost('income')}>
+                <span className="material-symbols-outlined icon">trending_down</span>
+                Income
+              </div>
+            </div>
+
+            <div className='input-total'>
+              <span>$</span>
+              <span contentEditable>0</span>
+            </div>
+
             <label htmlFor="description">Description</label>
             <input {...register('description', {required: true})} type="text" name="description" id="description" placeholder='Description' />
             {errors.description && <small>* Description required</small>}
-  
-            <label htmlFor="total">Total</label>
-            <input {...register('total', {required: true})} type="number" name="total" id="total" placeholder='$' />
-            {errors.total && <small>* Total required</small>}
+
+            <label htmlFor="creditCard">Credit Card</label>
+            <div className='modal__transaction__add__credit-card'>
+            <Swiper
+                slidesPerView={1}
+                spaceBetween={8}
+                pagination={{clickable: true}}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+                {
+                  wallet.map(card => {
+                    return (
+                      <SwiperSlide key={card.id}>
+                        <CreditCard card={card} size="small"/>
+                      </SwiperSlide>
+                    )
+                  })
+                }
+              </Swiper>
+            </div>
+
+            <label htmlFor="description">Type</label>
+            <div className='modal__transaction__add__list-type'>
+              <Swiper
+                slidesPerView={5}
+                spaceBetween={4}
+                pagination={{clickable: true}}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+                {
+                  Object.keys(MockCategories).map(category => {
+                    return (
+                      <SwiperSlide key={category}>
+                        <div 
+                          onClick={() => setModelType(category)}
+                          className={MockCategories[category].class + ' icon ' + (modelType == category ? 'active' : '')}>{MockCategories[category].icon}</div>
+                      </SwiperSlide>
+                    )
+                  })
+                }
+              </Swiper>
+            </div>
+
+            <label htmlFor="qtyPays">Qty. Pays</label>
+            <input type="range" name="qtyPays" id="qtyPays" max={24} min={1} step={1}/>
   
             <input type="submit" value="Add" />
           </form>

@@ -8,8 +8,9 @@
 
   &__list {
     margin: 24px auto;
-    padding: 0 12px;
+    padding: 0 16px;
     width: calc(100% - 24px);
+    overflow: hidden;
   }
 
   &__actions {
