@@ -1,26 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTranslation } from "react-i18next";
 import { EffectCards } from 'swiper/modules';
 import { Transaction } from 'src/components/Transaction/Transaction';
 import { CreditCard } from "src/components/CreditCard/CreditCard";
+import { useRoute } from "wouter";
+import localDB from 'src/localStorage/main';
 import MockTransaction from 'src/mocks/transactions';
-import MockWallet from 'src/mocks/wallet';
 import "./wallet.scss";
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
 export const Wallet = () => {
   const { t } = useTranslation();
-  const [wallet] = useState(MockWallet);
-  const [transactions, setTransaction] = useState(MockTransaction);
+  const [wallet, setWallet] = useState([]);
+  const [transactions] = useState(MockTransaction);
+  const [_, params] = useRoute("/wallet/:id");
+
+  useEffect(() => {
+    setWallet(localDB.getWallet())
+    console.log(params);
+  },[])
 
   return (
     <div className="wallet">
       <h2>{t("wallet.title")}</h2>
       
       <div className="wallet__list">
-        <Swiper modules={[EffectCards]} effect="cards">
+        <Swiper modules={[EffectCards]} effect="cards" initialSlide={params.id}>
           {
             wallet.map(card => {
               return (

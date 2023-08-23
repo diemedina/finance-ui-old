@@ -3,15 +3,15 @@ import { useNotificationsStore } from 'src/store/NotificationsStore';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { useModal } from 'src/hooks/useModal';
-import MockWallet from 'src/mocks/wallet';
 import Modal from 'src/components/Modal/Modal';
 import { CreditCard } from '../../CreditCard/CreditCard';
 import { useTranslation } from 'react-i18next';
+import localDB from 'src/localStorage/main';
 import './wallet.scss';
 
 export default function Wallet() {
   const { register, handleSubmit, reset } = useForm();
-  const [wallet, setWallet] = useState(MockWallet);
+  const [wallet, setWallet] = useState([]);
   const [isOpen, openModal, closeModal] = useModal();
   const {addNotification} = useNotificationsStore();
   const [modelColor, setModelColor] = useState('background-1');
@@ -42,6 +42,8 @@ export default function Wallet() {
   }
 
   useEffect(() => {
+    setWallet(localDB.getWallet())
+
     setModelColor('background-1');
     reset({ 
       description: "",
@@ -49,16 +51,13 @@ export default function Wallet() {
       entity: "VISA",
       balance: ""
     })
-  }, [isOpen]);
+  }, []);
 
   return (
     <>
       <section className='dashboard__wallet'>
         <div className="dashboard__wallet__header">
           <h2>{t('dashboard.my_wallet')}</h2>
-          <button onClick={() => openModal()}>
-            <i className="material-symbols-outlined">add</i>            
-          </button>
         </div>
         <div className='dashboard__wallet__list'>
           {

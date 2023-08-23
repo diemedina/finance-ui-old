@@ -12,7 +12,7 @@ function App() {
       <Notifications />
       <Route path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/wallet" component={Wallet} />
+      <Route path="/wallet/:id" component={Wallet} />
       <Route path="/monitoring" component={Monitoring} />
       <Navbar />
     </>

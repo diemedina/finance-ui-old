@@ -13,6 +13,7 @@ import './addTransaction.scss';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
+import localDB from 'src/localStorage/main';
 
 export const ModalAddTransaction = () => {
   const { register, handleSubmit, formState: {errors}, reset } = useForm();
@@ -30,8 +31,7 @@ export const ModalAddTransaction = () => {
       id: uuid()
     }
 
-    console.log(model);
-
+    localDB.addTransaction(model);
     setModalActive();
     addNotification({
       text: 'Add transaction successful',
@@ -68,7 +68,8 @@ export const ModalAddTransaction = () => {
 
             <div className='input-total'>
               <span>$</span>
-              <span contentEditable>0</span>
+              <input type="number" name="total" id="total" {...register('total', {required: true})}/>
+              {errors.total && <small>* Description required</small>}
             </div>
 
             <label htmlFor="description">Description</label>
@@ -119,9 +120,6 @@ export const ModalAddTransaction = () => {
               </Swiper>
             </div>
 
-            <label htmlFor="qtyPays">Qty. Pays</label>
-            <input type="range" name="qtyPays" id="qtyPays" max={24} min={1} step={1}/>
-  
             <input type="submit" value="Add" />
           </form>
         </Modal>
