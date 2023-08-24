@@ -24,7 +24,7 @@ export const Navbar = () => {
             </button>
           </Link>
           <Link href="/wallet">
-            <button className={active == '/wallet' ? 'active' : ''}>
+            <button className={active.includes('/wallet') ? 'active' : ''}>
               <span className="material-symbols-outlined">wallet</span>
             </button>
           </Link>

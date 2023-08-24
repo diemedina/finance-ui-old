@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNotificationsStore } from 'src/store/NotificationsStore';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useModalStore } from 'src/store/ModalStore';
-import { Pagination, EffectCards } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import { v4 as uuid } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { CreditCard } from "src/components/CreditCard/CreditCard";

@@ -17,7 +17,7 @@ html, body {
   color: $dark-100;
 }
 
-#root::before {
+/* #root::before {
   content: '';
   background: #FC76B3;
   opacity: .2;
@@ -27,7 +27,7 @@ html, body {
   position: fixed;
   left: -50px;
   top: 100px;
-}
+}*/
 
 h1::after {
   content: '.';
