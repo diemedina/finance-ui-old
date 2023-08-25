@@ -16,7 +16,13 @@ const localDB = {
   },
   addCardInWallet(card) {
     const wallet = this.getWallet();
-    serviceLocalStorage.set('wallet', [...wallet].push(card))
+    wallet.unshift(card);
+    serviceLocalStorage.set('wallet', wallet);
+  },
+  removeCardInWallet(index) {
+    const wallet = this.getWallet();
+    wallet.splice(index, 1);
+    serviceLocalStorage.set('wallet', wallet);
   },
   getTransactions() {
     const transactions = serviceLocalStorage.get('transactions');

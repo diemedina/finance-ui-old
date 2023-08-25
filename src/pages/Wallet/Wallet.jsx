@@ -29,9 +29,21 @@ export const Wallet = () => {
   const [, setLocation] = useLocation();
   const {addNotification} = useNotificationsStore();
   const [modelColor, setModelColor] = useState('background-1');
+  const [initialSlideValue, setInitialSlide] = useState(null);
 
   useEffect(() => {
-    setWallet(localDB.getWallet())
+    const listWallet = localDB.getWallet()
+    setWallet(listWallet)
+
+    if (!params?.id) {
+      setLocation(`/wallet/${listWallet[0].id}`);
+    } else {
+      const index = listWallet.findIndex(wallet => wallet.id == params.id)
+      setInitialSlide(index);
+      console.log(index)
+    }
+
+
     setModelColor('background-1');
     reset({ 
       description: "",
@@ -43,12 +55,18 @@ export const Wallet = () => {
 
   function sliderChange(e) {
     if (params?.id) setLocation(`/wallet/${e.realIndex}`);
+    setInitialSlide(e.realIndex);
   }
 
   function addCard(data) {
-    const _wallet = [...wallet];
-    _wallet.unshift({...data, color: modelColor, id: uuid()});
-    setWallet(_wallet);
+    const modelCard = {
+      ...data,
+      color: modelColor,
+      id: uuid()
+    }
+    console.log(modelCard)
+    localDB.addCardInWallet(modelCard)
+    setWallet(localDB.getWallet())
 
     closeModal();
     addNotification({
@@ -58,19 +76,15 @@ export const Wallet = () => {
     });
   }
 
-  function removeCard(id) {
-    const _wallet = [...wallet];
-    setWallet(_wallet.filter(w => w.id != id));
-
+  function removeCard() {
+    localDB.removeCardInWallet(initialSlideValue);
+    setWallet(localDB.getWallet())
+    
     addNotification({
       text: 'Remove card successful',
       type: 'success',
       icon: 'check_circle'
     });
-  }
-
-  function editar() {
-    console.log("A")
   }
 
   return (
@@ -82,17 +96,19 @@ export const Wallet = () => {
         </div>
         
         <div className="wallet__list">
-          <Swiper modules={[EffectCards]} effect="cards" initialSlide={params?.id ? params.id : 0} onSlideChange={sliderChange}>
-            {
-              wallet.map(card => {
-                return (
-                  <SwiperSlide key={card.id}>
-                    <CreditCard card={card}/>
-                  </SwiperSlide>
-                )
-              })
-            }
-          </Swiper>
+          { initialSlideValue != null && 
+            <Swiper modules={[EffectCards]} effect="cards" initialSlide={initialSlideValue} onSlideChange={sliderChange}>
+              {
+                wallet.map(card => {
+                  return (
+                    <SwiperSlide key={card.id}>
+                      <CreditCard card={card}/>
+                    </SwiperSlide>
+                  )
+                })
+              }
+            </Swiper>
+          }
         </div>
 
         <div className="wallet__actions">
@@ -100,7 +116,7 @@ export const Wallet = () => {
             <span className="material-symbols-outlined">edit</span>
             {t("wallet.edit")}
           </button>
-          <button className="remove">
+          <button className="remove" onClick={removeCard}>
             <span className="material-symbols-outlined">delete</span>
             {t("wallet.remove")}
           </button>
