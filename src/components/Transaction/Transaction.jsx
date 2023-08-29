@@ -4,12 +4,25 @@ import MockCategories from 'src/mocks/categories';
 import Modal from 'src/components/Modal/Modal';
 import { useModal } from 'src/hooks/useModal';
 import './transaction.scss';
+import { useNotificationsStore } from 'src/store/NotificationsStore';
+import localDB from 'src/localStorage/main';
 
 export const Transaction = ({transaction}) => {
   const [isOpenDetail, openModalDetail, closeModalDetail] = useModal();
+  const {addNotification} = useNotificationsStore();
 
   function viewDetail() {
     openModalDetail();
+  }
+
+  function deleteTransaction(id) {
+    localDB.removeTransaction(id);
+    closeModalDetail();
+    addNotification({
+      text: 'Remove transaction successful',
+      type: 'success',
+      icon: 'check_circle'
+    });
   }
 
   return (
@@ -39,6 +52,7 @@ export const Transaction = ({transaction}) => {
               <small>{moment(transaction.date).format('ddd D, MMM - HH:mm')}</small>
             </div>
           </div>
+          <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
         </Modal>
       }
     </>

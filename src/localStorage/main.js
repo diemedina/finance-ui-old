@@ -34,6 +34,14 @@ const localDB = {
     let transactions = this.getTransactions();
     transactions.push(transaction);
     serviceLocalStorage.set('transactions', transactions);
+  },
+  removeTransaction(transactionId) {
+    let transaction = this.getTransactions();
+    const index = transaction.findIndex(t => t.id == transactionId);
+    if (index > -1) {
+      transaction.splice(index, 1);
+      serviceLocalStorage.set('transactions', transaction);
+    }
   }
 }
 

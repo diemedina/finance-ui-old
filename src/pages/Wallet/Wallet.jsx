@@ -24,7 +24,7 @@ export const Wallet = () => {
   const { register, handleSubmit, reset } = useForm();
   const [isOpen, openModal, closeModal] = useModal();
   const [wallet, setWallet] = useState([]);
-  const [transactions] = useState(MockTransaction);
+  const [transactions, setTransactions] = useState(MockTransaction);
   const [, params] = useRoute("/wallet/:id");
   const [, setLocation] = useLocation();
   const {addNotification} = useNotificationsStore();
@@ -32,15 +32,16 @@ export const Wallet = () => {
   const [initialSlideValue, setInitialSlide] = useState(null);
 
   useEffect(() => {
-    const listWallet = localDB.getWallet()
-    setWallet(listWallet)
+    const listWallet = localDB.getWallet();
+    setWallet(listWallet);
+    const listTransactions = localDB.getTransactions();
+    setTransactions(listTransactions);
 
     if (!params?.id) {
-      setLocation(`/wallet/${listWallet[0].id}`);
+      setLocation(`/wallet/${listWallet[0]?.id}`);
     } else {
       const index = listWallet.findIndex(wallet => wallet.id == params.id)
       setInitialSlide(index);
-      console.log(index)
     }
 
 
