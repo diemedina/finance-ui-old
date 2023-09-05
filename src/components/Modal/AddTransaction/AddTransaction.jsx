@@ -19,7 +19,7 @@ export const ModalAddTransaction = () => {
   const { register, handleSubmit, formState: {errors}, reset } = useForm();
   const {addNotification} = useNotificationsStore();
   const {modalActive, setModalActive} = useModalStore();
-  const [modelType, setModelType] = useState('FOOD');
+  const [modelCategory, setModelCategory] = useState('FOOD');
   const [typeCost, setTypeCost] = useState('expence');
   const [wallet] = useState(MockWallet);
 
@@ -41,7 +41,7 @@ export const ModalAddTransaction = () => {
   }
 
   useEffect(() => {
-    setModelType('FOOD');
+    setModelCategory('FOOD');
     reset({ 
       description: "",
       total: ""
@@ -97,7 +97,7 @@ export const ModalAddTransaction = () => {
               </Swiper>
             </div>
 
-            <label htmlFor="description">Type</label>
+            <label htmlFor="description">Category</label>
             <div className='modal__transaction__add__list-type'>
               <Swiper
                 slidesPerView={5}
@@ -111,8 +111,8 @@ export const ModalAddTransaction = () => {
                     return (
                       <SwiperSlide key={category}>
                         <div 
-                          onClick={() => setModelType(category)}
-                          className={MockCategories[category].class + ' icon ' + (modelType == category ? 'active' : '')}>{MockCategories[category].icon}</div>
+                          onClick={() => modelCategory(category)}
+                          className={MockCategories[category].class + ' icon ' + (modelCategory == category ? 'active' : '')}>{MockCategories[category].icon}</div>
                       </SwiperSlide>
                     )
                   })

@@ -4,6 +4,9 @@
   padding: 24px;
   border-radius: 12px;
   background-color: $dark-800;
+  background: linear-gradient(#212121, #212121) padding-box,
+  linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+border: 2px solid transparent;
 
   &__header {
     display: flex;

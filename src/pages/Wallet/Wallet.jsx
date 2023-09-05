@@ -145,8 +145,7 @@ export const Wallet = () => {
             <label>{t("modal.credit_card.color")}</label>
             <div className="modal__transaction__add__colors">
               <Swiper
-                slidesPerView={5}
-                spaceBetween={4}
+                slidesPerView={6}
                 pagination={{clickable: true}}
                 modules={[Pagination]}
                 className="mySwiper"
@@ -179,9 +178,6 @@ export const Wallet = () => {
               <option value="MASTERCARD">MASTERCARD</option>
               <option value="AMERICANEXPRESS">AMERICAN EXPRESS</option>
             </select>
-
-            <label htmlFor="balance">{t("modal.credit_card.balance")}</label>
-            <input {...register('balance', {required: true})} type="number" name="balance" id="balance" placeholder='$' autoComplete='off'/>
 
             <input type="submit" value={t("modal.credit_card.action")} />
           </form>
